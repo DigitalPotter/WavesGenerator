@@ -117,22 +117,22 @@ struct GerstnerHelpers
         float Time,
         float FoamStrength)
         {
-            FMaterialParams OutParams = (FMaterialParams)0;
+        FMaterialParams OutParams = (FMaterialParams)0;
         
-            OutParams._WaveCount = WaveCount;
-            OutParams._MinMaxWavelength = MinMaxWavelength;
-            OutParams._MinMaxSteepness = MinMaxSteepness;
-            OutParams._MinMaxAmplitude = MinMaxAmplitude;
-            OutParams._WindDirection = WindDirection;
-            OutParams._Spread = Spread;
-            OutParams._WaveDistribution = WaveDistribution;
-            OutParams._PositionExcludingOffsets = PositionExcludingOffsets;
-            OutParams._ObjectPositionWS = ObjectPositionWS;
-            OutParams._Speed = Speed;
-            OutParams._Time = Time;
-            OutParams._FoamStrength = FoamStrength;
+        OutParams._WaveCount = WaveCount;
+        OutParams._MinMaxWavelength = MinMaxWavelength;
+        OutParams._MinMaxSteepness = MinMaxSteepness;
+        OutParams._MinMaxAmplitude = MinMaxAmplitude;
+        OutParams._WindDirection = WindDirection;
+        OutParams._Spread = Spread;
+        OutParams._WaveDistribution = WaveDistribution;
+        OutParams._PositionExcludingOffsets = PositionExcludingOffsets;
+        OutParams._ObjectPositionWS = ObjectPositionWS;
+        OutParams._Speed = Speed;
+        OutParams._Time = Time;
+        OutParams._FoamStrength = FoamStrength;
         
-            return OutParams;
+        return OutParams;
         }
     
 };
