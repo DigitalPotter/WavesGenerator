@@ -227,12 +227,11 @@ WaveOutput CalculateGerstnerWavesOnSphere(
             OutWaves.FoamMask = 0.f;
         }
         
-        const float3 OriginalPosition = MatParams._PositionExcludingOffsets;
-        float3 PositionForWavesCalculations = OriginalPosition;
+        const float3 Position = MatParams._PositionExcludingOffsets;
         TriplanarMask = PlanetHelpers::CalculateTriplanarMask(normalize(MatParams._PositionExcludingOffsets - MatParams._ObjectPositionWS), 20.f);
             
         float ProjectionX, ProjectionY;
-        FTriplanar TriplanarPos = FMath::GetTriplanarPosition(OriginalPosition, ProjectionX, ProjectionY);
+        FTriplanar TriplanarPos = FMath::GetTriplanarPosition(Position, ProjectionX, ProjectionY);
       
         // Arbitrary start numbers
         int2 Seed = int2(10007, 802709);
