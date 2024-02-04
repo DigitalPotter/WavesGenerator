@@ -2,7 +2,7 @@
 // Can be used in any project free of charge,
 // can be modified, cannot be resold
 // Facebook: https://www.facebook.com/aaalikin/
-// Discord: script526
+// Discord: scrappy526
 
 #include "/Shaders/DataTypes.ush"
 #include "/Shaders/Utils.ush"
