@@ -217,7 +217,7 @@ WaveOutput CalculateGerstnerWavesOnSphere(
     {
         // Passing VertexNormalWS node doesn't work (everything is zero), so here's a workaround
         // This means it will work only on a perfect sphere and will fail on a slightly different shape
-        float3 SphereVertexNormal = normalize(MatParams._PositionExcludingOffsets);
+        float3 SphereVertexNormal = normalize(MatParams._PositionExcludingOffsets - MatParams._ObjectPositionWS);
         
         if (MatParams._WaveCount <= 0.f)
         {
@@ -228,7 +228,7 @@ WaveOutput CalculateGerstnerWavesOnSphere(
         }
         
         const float3 Position = MatParams._PositionExcludingOffsets;
-        TriplanarMask = PlanetHelpers::CalculateTriplanarMask(normalize(MatParams._PositionExcludingOffsets - MatParams._ObjectPositionWS), 20.f);
+        TriplanarMask = PlanetHelpers::CalculateTriplanarMask(SphereVertexNormal, 20.f);
             
         float ProjectionX, ProjectionY;
         FTriplanar TriplanarPos = FMath::GetTriplanarPosition(Position, ProjectionX, ProjectionY);
