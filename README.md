@@ -8,4 +8,4 @@ This plugin doesn't provide any mesh quadtree/LOD system. You have to use your o
 Provides shaders, materials, and material functions for Gerstner wave generation and shading the ocean, both on planets and flat worlds.
 # Support
   - https://www.facebook.com/aaalikin/
-  - script526 on Discord
+  - Discord: scrappy526
