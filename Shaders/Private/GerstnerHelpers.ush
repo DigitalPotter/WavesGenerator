@@ -104,35 +104,35 @@ struct GerstnerHelpers
     }
     
     static FMaterialParams CreateMaterialParameters(
-    int WaveCount,
-    float2 MinMaxWavelength,
-    float2 MinMaxSteepness,
-    float2 MinMaxAmplitude,
-    float2 WindDirection,
-    float Spread,
-    float WaveDistribution,
-    float3 PositionExcludingOffsets,
-    float3 ObjectPositionWS,
-    float Speed,
-    float Time,
-    float FoamStrength)
-    {
-        FMaterialParams OutParams = (FMaterialParams) 0;
+        int WaveCount,
+        float2 MinMaxWavelength,
+        float2 MinMaxSteepness,
+        float2 MinMaxAmplitude,
+        float2 WindDirection,
+        float Spread,
+        float WaveDistribution,
+        float3 PositionExcludingOffsets,
+        float3 ObjectPositionWS,
+        float Speed,
+        float Time,
+        float FoamStrength)
+        {
+            FMaterialParams OutParams = (FMaterialParams)0;
         
-        OutParams._WaveCount = WaveCount;
-        OutParams._MinMaxWavelength = MinMaxWavelength;
-        OutParams._MinMaxSteepness = MinMaxSteepness;
-        OutParams._MinMaxAmplitude = MinMaxAmplitude;
-        OutParams._WindDirection = WindDirection;
-        OutParams._Spread = Spread;
-        OutParams._WaveDistribution = WaveDistribution;
-        OutParams._PositionExcludingOffsets = PositionExcludingOffsets;
-        OutParams._ObjectPositionWS = ObjectPositionWS;
-        OutParams._Speed = Speed;
-        OutParams._Time = Time;
-        OutParams._FoamStrength = FoamStrength;
+            OutParams._WaveCount = WaveCount;
+            OutParams._MinMaxWavelength = MinMaxWavelength;
+            OutParams._MinMaxSteepness = MinMaxSteepness;
+            OutParams._MinMaxAmplitude = MinMaxAmplitude;
+            OutParams._WindDirection = WindDirection;
+            OutParams._Spread = Spread;
+            OutParams._WaveDistribution = WaveDistribution;
+            OutParams._PositionExcludingOffsets = PositionExcludingOffsets;
+            OutParams._ObjectPositionWS = ObjectPositionWS;
+            OutParams._Speed = Speed;
+            OutParams._Time = Time;
+            OutParams._FoamStrength = FoamStrength;
         
-        return OutParams;
-    }
+            return OutParams;
+        }
     
 };
