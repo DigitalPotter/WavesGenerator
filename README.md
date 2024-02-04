@@ -10,7 +10,7 @@ This plugin doesn't provide any mesh quadtree/LOD system. You have to use your o
 - Planet gravity using Unreal's native movement component
 - Subsurface scattering
 - Better foam masking and fading out
-- Custom (ocean shader based) screen space reflections with more control as opposed to standart SSR
+- Custom screen-space reflections based on ocean shader with greater control compared to standard SSR
 - Playable character
 - Drivable boat
 - (Possibly) CPU async or shader based mesh LOD system
