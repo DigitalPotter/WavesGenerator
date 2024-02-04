@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "WavesGenerator",
+	"Description": "Gerstner waves for planets and flat worlds ",
+	"Category": "Other",
+	"CreatedBy": "Alexander Alikin",
+	"CreatedByURL": "Discord: scrappy526",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "WavesGenerator",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
