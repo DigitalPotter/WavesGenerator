@@ -33,8 +33,7 @@ struct FTriplanar
 {
     float3 ProjectionX;
     float3 ProjectionY;
-    float3 ProjectionZ;
-    
+    float3 ProjectionZ;  
 };
 
 struct FVector

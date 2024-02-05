@@ -6,7 +6,7 @@
 
 #include "/Shaders/DataTypes.ush"
 #include "/Shaders/Utils.ush"
-#include "/Shaders/GerstnerHelpers.ush"
+#include "/Shaders/Gerstner.ush"
 
 struct FlatGerstner
 {  
@@ -17,16 +17,15 @@ struct FlatGerstner
     
     
     WaveOutput CalculateGerstnerWaves(
-    FMaterialParams MatParams,
-    out float3 TriplanarMask)
+    FMaterialParams MatParams)
     {
         // Arbitrary start numbers
         int2 Seed = int2(10007, 802709);
         
-        WaveOutput OutWaves = GerstnerHelpers::GetAllGerstnerWaves(MatParams._PositionExcludingOffsets, MatParams, Seed);
+        WaveOutput OutWaves = Gerstner::GetAllGerstnerWaves(MatParams._PositionExcludingOffsets, MatParams, Seed);
         
-        OutWaves.Normal = GerstnerHelpers::FinalizeNormal(OutWaves.Normal);
-        OutWaves.FoamMask = GerstnerHelpers::FinalizeFoamMask(OutWaves.FoamMask, MatParams._FoamStrength);
+        OutWaves.Normal = Gerstner::FinalizeNormal(OutWaves.Normal);
+        OutWaves.FoamMask = Gerstner::FinalizeFoamMask(OutWaves.FoamMask, MatParams._FoamStrength);
         return OutWaves;
     }
 
@@ -38,7 +37,7 @@ struct FlatGerstner
 FlatGerstner Waves;
 
 
-FMaterialParams MatParams = GerstnerHelpers::CreateMaterialParameters(
+FMaterialParams MatParams = Utils::CreateMaterialParameters(
 WaveCount,
 float2(MinWavelength, MaxWavelength),
 float2(MinSteepness, MaxSteepness),
@@ -53,8 +52,7 @@ Time,
 FoamStrength);
 
 WaveOutput FinalWaves = Waves.CalculateGerstnerWaves(
-    MatParams,
-    TriplanarMask);
+    MatParams);
 
 Normal = FinalWaves.Normal;
 FoamMask = FinalWaves.FoamMask;

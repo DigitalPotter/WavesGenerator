@@ -6,7 +6,7 @@
 
 #include "/Shaders/DataTypes.ush"
 #include "/Shaders/Utils.ush"
-#include "/Shaders/GerstnerHelpers.ush"
+#include "/Shaders/Gerstner.ush"
 
 struct PlanetGerstner
 {
@@ -231,19 +231,19 @@ WaveOutput CalculateGerstnerWavesOnSphere(
         TriplanarMask = PlanetHelpers::CalculateTriplanarMask(SphereVertexNormal, 20.f);
             
         float ProjectionX, ProjectionY;
-        FTriplanar TriplanarPos = FMath::GetTriplanarPosition(Position, ProjectionX, ProjectionY);
+        FTriplanar TriplanarPos = PlanetHelpers::GetTriplanarPosition(Position, ProjectionX, ProjectionY);
       
         // Arbitrary start numbers
         int2 Seed = int2(10007, 802709);
         
         // Waves for X face /////////
-        WaveOutput OutWavesX = GerstnerHelpers::GetAllGerstnerWaves(TriplanarPos.ProjectionX, MatParams, Seed);
+        WaveOutput OutWavesX = Gerstner::GetAllGerstnerWaves(TriplanarPos.ProjectionX, MatParams, Seed);
         
         // Waves for Y face /////////
-        WaveOutput OutWavesY = GerstnerHelpers::GetAllGerstnerWaves(TriplanarPos.ProjectionY, MatParams, Seed);
+        WaveOutput OutWavesY = Gerstner::GetAllGerstnerWaves(TriplanarPos.ProjectionY, MatParams, Seed);
         
         // Waves for Z face
-        WaveOutput OutWavesZ = GerstnerHelpers::GetAllGerstnerWaves(TriplanarPos.ProjectionZ, MatParams, Seed);
+        WaveOutput OutWavesZ = Gerstner::GetAllGerstnerWaves(TriplanarPos.ProjectionZ, MatParams, Seed);
         
         FTriplanar RawWPO = (FTriplanar)0;
         RawWPO.ProjectionX = OutWavesX.WPO;
@@ -262,9 +262,9 @@ WaveOutput CalculateGerstnerWavesOnSphere(
 
         
         // Normal Z needs to be 1-x once all waves are combined
-        RawNormal.ProjectionX = GerstnerHelpers::FinalizeNormal(RawNormal.ProjectionX);
-        RawNormal.ProjectionY = GerstnerHelpers::FinalizeNormal(RawNormal.ProjectionY);
-        RawNormal.ProjectionZ = GerstnerHelpers::FinalizeNormal(RawNormal.ProjectionZ);
+        RawNormal.ProjectionX = Gerstner::FinalizeNormal(RawNormal.ProjectionX);
+        RawNormal.ProjectionY = Gerstner::FinalizeNormal(RawNormal.ProjectionY);
+        RawNormal.ProjectionZ = Gerstner::FinalizeNormal(RawNormal.ProjectionZ);
               
         FTriplanar AlignedWPO = AlignWPOToSphere(RawWPO, SphereVertexNormal);
         FTriplanar AlignedNormal = AlignNormalsToSphere(RawNormal, SphereVertexNormal);
@@ -272,7 +272,7 @@ WaveOutput CalculateGerstnerWavesOnSphere(
         // combine the result
         WaveOutput OutWaves = CombineTriplanarProjections(AlignedWPO, AlignedNormal, FoamMasks, TriplanarMask);
         OutWaves.Normal = normalize(OutWaves.Normal + SphereVertexNormal);
-        OutWaves.FoamMask = GerstnerHelpers::FinalizeFoamMask(OutWaves.FoamMask, MatParams._FoamStrength);
+        OutWaves.FoamMask = Gerstner::FinalizeFoamMask(OutWaves.FoamMask, MatParams._FoamStrength);
         return OutWaves;
     }
     
@@ -285,7 +285,7 @@ WaveOutput CalculateGerstnerWavesOnSphere(
 PlanetGerstner Waves;
 
 
-FMaterialParams MatParams = GerstnerHelpers::CreateMaterialParameters(
+FMaterialParams MatParams = Utils::CreateMaterialParameters(
 WaveCount,
 float2(MinWavelength, MaxWavelength),
 float2(MinSteepness, MaxSteepness),
