@@ -6,7 +6,17 @@ Waves for planets and flat worlds.
 # Warning
 - This plugin doesn't provide any mesh quadtree/LOD system. You have to use your own, or take advantage of other plugins like Voxel Plugin or Worldscape.
 - Meshes that are used in the example scenes were just subdivided to achieve the desirable level of detail.
-- Currently ocean sphere cannot be rotated (but can be moved), will be fixed soon
+# Features
+- Spherical oceans can be moved and rotated (check example map).
+- You can have more than one planet with a spherical ocean in the scene.
+- Wave foam.
+- Texture-based scrolling normals on top of displacement normals
+- Additional masks that you might want to use:
+	- Distance to vertex
+	- Distance field mask (can be used to fade off World Position Offset and normals)
+	- Beach mask based on depth (for beach foam, only pixel shader)
+	- Specular highlight mask
+	- Sun reflection mask.
 # Planned
 - Buoyancy
 - Planet gravity using Unreal's native movement component
