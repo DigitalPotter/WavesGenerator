@@ -22,7 +22,7 @@ struct FlatGerstner
         // Arbitrary start numbers
         int2 Seed = int2(10007, 802709);
         
-        WaveOutput OutWaves = Gerstner::GetAllGerstnerWaves(MatParams._PositionExcludingOffsets, MatParams, Seed);
+        WaveOutput OutWaves = Gerstner::GetAllGerstnerWaves(MatParams._Position, MatParams, Seed);
         
         OutWaves.Normal = Gerstner::FinalizeNormal(OutWaves.Normal);
         OutWaves.FoamMask = Gerstner::FinalizeFoamMask(OutWaves.FoamMask, MatParams._FoamStrength);
@@ -37,7 +37,7 @@ struct FlatGerstner
 FlatGerstner Waves;
 
 
-FMaterialParams MatParams = Utils::CreateMaterialParameters(
+FMaterialParams MatParams = Utils::CreateFlatOceanParameters(
 WaveCount,
 float2(MinWavelength, MaxWavelength),
 float2(MinSteepness, MaxSteepness),
@@ -45,8 +45,7 @@ float2(MinAmplitude, MaxAmplitude),
 WindDirection,
 Spread,
 WaveDistribution,
-PositionExcludingOffsets,
-ObjectPositionWS,
+PositionWS,
 Speed,
 Time,
 FoamStrength);

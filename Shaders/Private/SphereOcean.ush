@@ -213,11 +213,11 @@ struct PlanetGerstner
     
 WaveOutput CalculateGerstnerWavesOnSphere(
     FMaterialParams MatParams,
-    out float3 TriplanarMask)
+    float3 TriplanarMask)
     {
         // Passing VertexNormalWS node doesn't work (everything is zero), so here's a workaround
         // This means it will work only on a perfect sphere and will fail on a slightly different shape
-        float3 SphereVertexNormal = normalize(MatParams._PositionExcludingOffsets - MatParams._ObjectPositionWS);
+        float3 SphereVertexNormal = normalize(MatParams._Position);
         
         if (MatParams._WaveCount <= 0.f)
         {
@@ -227,11 +227,10 @@ WaveOutput CalculateGerstnerWavesOnSphere(
             OutWaves.FoamMask = 0.f;
         }
         
-        const float3 Position = MatParams._PositionExcludingOffsets;
-        TriplanarMask = PlanetHelpers::CalculateTriplanarMask(SphereVertexNormal, 20.f);
+        //TriplanarMask = PlanetHelpers::CalculateTriplanarMask(SphereVertexNormal, 20.f);
             
         float ProjectionX, ProjectionY;
-        FTriplanar TriplanarPos = PlanetHelpers::GetTriplanarPosition(Position, ProjectionX, ProjectionY);
+        FTriplanar TriplanarPos = PlanetHelpers::GetTriplanarPosition(MatParams._Position, ProjectionX, ProjectionY);
       
         // Arbitrary start numbers
         int2 Seed = int2(10007, 802709);
@@ -270,7 +269,7 @@ WaveOutput CalculateGerstnerWavesOnSphere(
         FTriplanar AlignedNormal = AlignNormalsToSphere(RawNormal, SphereVertexNormal);
         
         // combine the result
-        WaveOutput OutWaves = CombineTriplanarProjections(AlignedWPO, AlignedNormal, FoamMasks, TriplanarMask);
+        WaveOutput OutWaves = CombineTriplanarProjections(AlignedWPO, AlignedNormal, FoamMasks, MatParams._TriplanarMaskOS);
         OutWaves.Normal = normalize(OutWaves.Normal + SphereVertexNormal);
         OutWaves.FoamMask = Gerstner::FinalizeFoamMask(OutWaves.FoamMask, MatParams._FoamStrength);
         return OutWaves;
@@ -293,8 +292,8 @@ float2(MinAmplitude, MaxAmplitude),
 WindDirection,
 Spread,
 WaveDistribution,
-PositionExcludingOffsets,
-ObjectPositionWS,
+PositionOS,
+TriplanarMaskOS,
 Speed,
 Time,
 FoamStrength);

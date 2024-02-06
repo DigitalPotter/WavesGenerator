@@ -15,8 +15,8 @@ struct FMaterialParams
     float2 _WindDirection;
     float _Spread;
     float _WaveDistribution;
-    float3 _PositionExcludingOffsets;
-    float3 _ObjectPositionWS;
+    float3 _Position;
+    float3 _TriplanarMaskOS;
     float _Time;
     float _Speed;
     float _FoamStrength;
